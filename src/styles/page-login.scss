@@ -1,0 +1,173 @@
+@import "mixins";
+@import "variables";
+
+.login-page {
+  @include size(100vw, 100vh);
+  @include flex();
+
+  text-align: center;
+  background: $color-green-background;
+  background: $background-radialGradient-green;
+
+  &__wrapper {
+    @include size(60vw, 60vh);
+    @include flex(row, flex-start, center);
+    background-color: $color-white;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+    svg {
+      @include size(auto, 100%);
+      border-radius: 4px;
+
+      #g612,
+      #g624 {
+        animation: animateLeavesLeft 5s linear infinite;
+      }
+
+      #g260 {
+        animation: animateLeavesRight 10s linear infinite;
+      }
+
+      #g732 {
+        animation: animateLeavesTop 6s linear infinite;
+
+      }
+    }
+
+    &-form {
+      @include flex(column, flex-start);
+
+      &-company {
+        @include font("Montserrat Bold", 36px);
+        text-transform: uppercase;
+        margin-bottom: 100px;
+      }
+
+      &-welcome {
+        @include font("Montserrat Regular", 20px);
+        margin-bottom: 10px;
+      }
+
+      &-group {
+        position: relative;
+        margin: 20px 0;
+
+        .bar {
+          position: relative;
+          display: block;
+          width: 100%;
+
+          &:before {
+            content: '';
+            height: 2px;
+            width: 0;
+            bottom: 0;
+            position: absolute;
+            background: $text-light-green;
+            transition: 0.3s ease all;
+            left: 0;
+          }
+        }
+
+        label {
+          @include font("Barlow Regular", 16px);
+          color: $text-dark;
+          position: absolute;
+          left: 5px;
+          top: 10px;
+          transition: 0.3s ease all;
+        }
+
+        input {
+          @include font("Barlow Regular", 18px);
+          background: none;
+          padding: 10px 10px 10px 5px;
+          border: none;
+          outline: none;
+
+          border-bottom: 1px solid $text-dark;
+
+          &:focus ~ label,
+          &:valid ~ label {
+            @include font("Barlow Regular", 12px);
+            top: -14px;
+            color: $text-light-green;
+          }
+
+          &:focus ~ .bar:before {
+            width: 100%;
+          }
+        }
+      }
+
+      &-reset {
+        @include font("Barlow Regular", 12px, $text-light-green);
+        cursor: pointer;
+        text-align: right;
+
+      }
+
+      &-button {
+        @include font("Barlow Regular", 20px);
+        text-transform: uppercase;
+        cursor: pointer;
+        border: none;
+        user-select: none;
+        outline: none;
+        padding: 10px 20px;
+        margin: 25px 0 15px;
+
+        background: $color-green-light;
+        transition: all 0.3s linear;
+
+        &:hover {
+          background: darken($color-green-light, 10%);
+        }
+      }
+    }
+  }
+}
+
+@keyframes animateLeavesLeft {
+  0% {
+    transform: rotate(0deg) ;
+  }
+
+  50% {
+    transform: rotate(1deg) ;
+  }
+
+  100% {
+    transform: rotate(0deg) ;
+  }
+}
+
+@keyframes animateLeavesRight {
+  0% {
+    transform: rotate(3deg) translate(73px, 263px);
+  }
+
+  50% {
+    transform: rotate(0deg) translate(73px, 263px);
+  }
+
+  100% {
+    transform: rotate(3deg) translate(73px, 263px);
+  }
+}
+
+@keyframes animateLeavesTop {
+  0% {
+    transform: rotate(0deg) translate(0, 0px);
+  }
+
+  50% {
+    transform: rotate(0deg) translate(0, -2px);
+  }
+
+  100% {
+    transform: rotate(0deg) translate(0, 0px);
+  }
+}
+

@@ -1,0 +1,19 @@
+@import "variables";
+
+@mixin size($width, $height: null) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flex($direction: row, $justifyContent: center, $alignItems: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}
+
+@mixin font($font: "Montserrat Regular", $size: 14px, $color: $text-dark) {
+  font-family: $font, sans-serif;
+  font-size: $size;
+  color: $color;
+}
