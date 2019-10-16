@@ -23,6 +23,7 @@
     "env-cmd": "^10.0.1",
     "nodemon": "^1.19.3"
   },
+  "proxy": "http://localhost:3000/",
   "scripts": {
     "start": "react-scripts start",
     "start-server": "env-cmd -f .env.local nodemon server/app.js",

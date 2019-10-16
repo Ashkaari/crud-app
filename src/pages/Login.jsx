@@ -1,35 +1,37 @@
-import React, {Component} from 'react';
+import React from 'react';
+import axios from 'axios';
 import {ReactComponent as Logo} from '../background1.ai.svg';
+import FormPanel from "../components/LoginForm";
 
 import '../styles/page-login.scss';
+import loginModel from "../models/loginModel";
 
-export default class LoginPage extends Component {
-  render() {
-    return (
-      <div className="login-page">
-        <div className="login-page__wrapper">
-          <Logo />
-          <div className="login-page__wrapper-form">
-            <span className="login-page__wrapper-form-company">Leonurus Ltd.</span>
-            <span className="login-page__wrapper-form-welcome">Welcome to Leonurus.CRUD</span>
-            <div className="login-page__wrapper-form-group">
-              <input type="text" name="email" required />
-              <span className="bar"/>
-              <label>Email</label>
-            </div>
-            <div className="login-page__wrapper-form-group">
-              <input type="password" name="password" required />
-              <span className="bar"/>
-              <label>Password</label>
-            </div>
-            <button className="login-page__wrapper-form-button">
-              Sign in
-            </button>
-            <span className="login-page__wrapper-form-reset">Forgot password?</span>
+const LoginPage = () =>  {
+  const handleSubmit = () => {
+    let payload = {};
+    loginModel.forEach(item => (payload[item.name] = item.value));
+    axios.post('users/login', payload, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      console.log(res)
+    })
+  };
 
-          </div>
+  return (
+    <div className="login-page">
+      <div className="login-page__wrapper">
+        <Logo />
+        <div className="login-page__wrapper-form">
+          <span className="login-page__wrapper-form-company">Leonurus Ltd.</span>
+          <span className="login-page__wrapper-form-welcome">Welcome to Leo.CRUD</span>
+          <FormPanel btnText="Sign in" submitCallback={handleSubmit} model={loginModel} />
+          <span className="login-page__wrapper-form-reset">Forgot password?</span>
         </div>
       </div>
-    )
-  }
-}
+    </div>
+  )
+};
+
+export default LoginPage;
