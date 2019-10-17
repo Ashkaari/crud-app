@@ -91,9 +91,8 @@
 
             &:focus ~ label,
             &:valid ~ label {
-              @include font("Barlow Regular", 12px);
+              @include font("Barlow Regular", 12px, $text-light-green);
               top: -14px;
-              color: $text-light-green;
             }
 
             &:focus ~ .bar:before {
@@ -130,6 +129,43 @@
     }
   }
 }
+
+@media (max-width: $breakpoint-mobile) {
+  .login-page__wrapper {
+    @include size(90vw, 90vh);
+    position:relative;
+    overflow: hidden;
+
+    svg {
+      position: absolute;
+      left: -90vw;
+      opacity: 0.3;
+    }
+
+    &-form {
+      z-index: $z-layer-1;
+      width: 100%;
+
+      .form {
+        input {
+          &:focus ~ label,
+          &:valid ~ label {
+            @include font("Barlow Regular", 12px, darken($text-light-green, 20%));
+            top: -14px;
+          }
+        }
+      }
+
+
+
+      &-reset {
+        @include font("Barlow Regular", 16px, darken($text-light-green, 20%));
+
+      }
+    }
+  }
+}
+
 
 @keyframes animateLeavesLeft {
   0% {

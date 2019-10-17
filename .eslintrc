@@ -4,6 +4,7 @@
     "jest": true,
     "es6": true
   },
+  "parser": "babel-eslint",
   "extends": ["plugin:prettier/recommended", "plugin:react/recommended", "eslint:recommended"],
   "plugins": ["prettier"],
   "parserOptions": {
@@ -12,6 +13,7 @@
   },
   "rules": {
     "no-console": "warn",
-    "no-eval": "error"
+    "no-eval": "error",
+    "react/prop-types": "off"
   }
 }

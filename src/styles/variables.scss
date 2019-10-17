@@ -8,3 +8,18 @@ $bg-rad-gradient-green: radial-gradient(circle, rgba(48,90,93,1) 0%, rgba(42,53,
 $text-dark: #27253d;
 $text-alert: #b76e6e;
 $text-light-green: #648269;
+
+
+//640 768 1024 1200
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+$breakpoint-desktop: 1200px;
+
+
+//z index
+
+$z-layer-1: 1;
+$z-layer-2: 2;
+$z-layer-3: 3;
+$z-layer-4: 4;
+$z-layer-5: 5;
