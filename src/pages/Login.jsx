@@ -22,6 +22,7 @@ class LoginPage extends Component {
 
     this.setState({
       loading: true,
+      loginError: '',
     });
 
     axios

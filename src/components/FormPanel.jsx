@@ -3,6 +3,7 @@ import React from 'react';
 import useForm from '../hooks/useForm';
 import TextInput from './inputs/TextInput';
 import PasswordInput from './inputs/PasswordInput';
+import Loader from './Loader';
 
 function FormPanel({ btnText, submitCallback, model, loading, error }) {
   const [inputs, setInputs, setSubmit] = useForm(model, submitCallback);
@@ -23,7 +24,7 @@ function FormPanel({ btnText, submitCallback, model, loading, error }) {
       {inputs.map(input => renderInput(input))}
       {error && <div className="text-danger">{error}</div>}
       {loading ? (
-        <div>actions in progress...</div>
+        <Loader />
       ) : (
         <div className={`form__button ${requiredAndNotFilled ? 'disabled' : ''}`} onClick={setSubmit}>
           {btnText}
