@@ -1,7 +1,7 @@
 @import "reset";
 @import "mixins";
 @import "variables";
-
+@import "modifiers";
 
 @font-face {
   font-family: "Montserrat Regular";
@@ -21,11 +21,4 @@
 @font-face {
   font-family: "Barlow Regular";
   src: url("fonts/Barlow-Regular.otf") format("opentype");
-}
-
-.text-danger {
-  @include font("Barlow Regular", 18px);
-  color: $text-alert;
-  margin-top: 5px;
-
 }

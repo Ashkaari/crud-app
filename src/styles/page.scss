@@ -1,0 +1,16 @@
+@import "mixins";
+@import "variables";
+
+.page {
+  @include size(100vw, 100vh);
+  @include flex();
+
+  text-align: center;
+  background: $bg-color-green;
+  background: $bg-rad-gradient-green;
+}
+
+
+@media (max-width: $breakpoint-mobile) {
+
+}

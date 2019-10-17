@@ -16,6 +16,8 @@ function FormPanel({ btnText, submitCallback, model, loading, error }) {
     return <Component key={input.name} setInputs={setInputs} {...input} />;
   };
 
+  const requiredAndNotFilled = inputs.some(i => i.required && (!i.value || i.alert));
+
   return (
     <div className="form">
       {inputs.map(input => renderInput(input))}
@@ -23,7 +25,7 @@ function FormPanel({ btnText, submitCallback, model, loading, error }) {
       {loading ? (
         <div>actions in progress...</div>
       ) : (
-        <div className="form__button" onClick={setSubmit}>
+        <div className={`form__button ${requiredAndNotFilled ? 'disabled' : ''}`} onClick={setSubmit}>
           {btnText}
         </div>
       )}

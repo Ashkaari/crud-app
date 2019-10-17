@@ -1,0 +1,34 @@
+@import "variables";
+
+.text-danger {
+  @include font("Barlow Regular", 14px, $text-alert);
+  margin-top: 5px;
+}
+
+._header {
+  @include font("Montserrat Bold", 36px);
+  text-transform: uppercase;
+}
+
+._subheader {
+  @include font("Montserrat Regular", 20px);
+}
+
+._info {
+  @include font("Barlow Regular", 16px, $text-light-green);
+}
+
+@media (max-width: $breakpoint-mobile) {
+  ._header {
+    @include font("Montserrat Bold", 24px);
+  }
+
+  ._subheader {
+    @include font("Montserrat Regular", 16px);
+  }
+
+  .text-danger {
+    @include font("Barlow Regular", 14px, darken($text-alert, 5%));
+    font-weight: bold;
+  }
+}

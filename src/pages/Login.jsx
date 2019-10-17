@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-import { ReactComponent as Logo } from '../background1.ai.svg';
 import FormPanel from '../components/FormPanel';
 
 import '../styles/page-login.scss';
 import loginModel from '../models/loginModel';
-import registerModel from '../models/registerModel';
 
-// todo: connect babel-eslint
 class LoginPage extends Component {
   constructor() {
     super();
 
     this.state = {
-      form: 'login',
       loading: false,
       loginError: false,
     };
@@ -48,28 +45,21 @@ class LoginPage extends Component {
     const { loading, form, loginError } = this.state;
 
     return (
-      <div className="login-page">
-        <div className="login-page__wrapper">
-          <Logo />
-          <div className="login-page__wrapper-form">
-            <span className="login-page__wrapper-form-company">Leonurus Ltd.</span>
-            {form === 'login' ? (
-              <span onClick={() => this.setState({ form: 'register' })}> REGISTER </span>
-            ) : (
-              <span onClick={() => this.setState({ form: 'login' })}> LOGIN </span>
-            )}
-            <span className="login-page__wrapper-form-welcome">Welcome to Leo.CRUD</span>
-            <FormPanel
-              key={form}
-              btnText={form === 'login' ? 'Sign In' : 'Register'}
-              submitCallback={this.handleSubmit}
-              model={form === 'login' ? loginModel : registerModel}
-              loading={loading}
-              error={loginError}
-            />
-            {form === 'login' && <span className="login-page__wrapper-form-reset">Forgot password?</span>}
-          </div>
-        </div>
+      <div className="page__login-wrapper">
+        <span className="page__login-wrapper _header">Leonurus Ltd.</span>
+        <NavLink to="/register"> REGISTER </NavLink>
+        <span className="page__login-wrapper _subheader">Welcome to Leo.CRUD</span>
+        <FormPanel
+          key={form}
+          btnText={'Sign In'}
+          submitCallback={this.handleSubmit}
+          model={loginModel}
+          loading={loading}
+          error={loginError}
+        />
+        <NavLink to="/forgot_password" className="page__login-wrapper _info">
+          Forgot password?
+        </NavLink>
       </div>
     );
   }

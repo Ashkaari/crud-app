@@ -4,15 +4,22 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
+// code 1 - already exists
+// code 0 - unhandled error
+
 router.post('/users', async (req, res) => {
   try {
     const user = new User(req.body);
     await user.save();
     const token = await user.generateAuthToken();
 
-    res.status(201).send({ user, token });
+    res.status(201).send({ user: { name: user.name, email: user.email }, token });
   } catch (e) {
-    res.status(400).send(e);
+    if (e.code === 11000) {
+      res.status(400).send({ code: 1 });
+    } else {
+      res.status(400).send({ code: 0 });
+    }
   }
 });
 
