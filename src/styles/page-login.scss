@@ -147,6 +147,7 @@
       width: 100%;
 
       .form {
+        max-width: 220px;
         input {
           &:focus ~ label,
           &:valid ~ label {

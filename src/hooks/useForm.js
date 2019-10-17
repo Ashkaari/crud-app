@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from 'react';
 
 const useForm = (initModel, submitCallBack) => {
   const [inputs, setInputs] = useState(initModel);
@@ -21,15 +21,16 @@ const useForm = (initModel, submitCallBack) => {
     inputs.some(i => i.alert) ? setInputs([...inputs]) : submitCallBack(inputs);
   };
 
-  const parseInput = input => input.value = input.parseFun ? input.parseFun(input.value) : input.value;
+  const parseInput = input => (input.value = input.parseFun ? input.parseFun(input.value) : input.value);
 
   const validateInput = input => {
     let alert = null;
-    input.validators && input.validators.forEach(v => alert = v.isValidFun && !v.isValidFun(input.value) ? v.alert : alert);
+    input.validators &&
+      input.validators.forEach(v => (alert = v.isValidFun && !v.isValidFun(input.value) ? v.alert : alert));
     input.alert = alert;
   };
 
-  return [inputs, handleChange, handleSubmit]
+  return [inputs, handleChange, handleSubmit];
 };
 
 export default useForm;

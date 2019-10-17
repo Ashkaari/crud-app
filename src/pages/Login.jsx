@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { ReactComponent as Logo } from '../background1.ai.svg';
-import FormPanel from '../components/LoginForm';
+import FormPanel from '../components/FormPanel';
 
 import '../styles/page-login.scss';
 import loginModel from '../models/loginModel';
+import registerModel from '../models/registerModel';
 
 // todo: connect babel-eslint
 class LoginPage extends Component {
@@ -12,6 +13,7 @@ class LoginPage extends Component {
     super();
 
     this.state = {
+      form: 'login',
       loading: false,
       loginError: false,
     };
@@ -31,21 +33,19 @@ class LoginPage extends Component {
           'Content-Type': 'application/json',
         },
       })
-      .then(res => {
-        console.log(res);
-      })
+      .then(res => {})
       .catch(e => {
         if (e.response.data.error) {
           this.setState({
             loginError: e.response.data.error,
-            loading: false
+            loading: false,
           });
         }
       });
   };
 
   render() {
-    const { loading, loginError } = this.state;
+    const { loading, form, loginError } = this.state;
 
     return (
       <div className="login-page">
@@ -53,15 +53,21 @@ class LoginPage extends Component {
           <Logo />
           <div className="login-page__wrapper-form">
             <span className="login-page__wrapper-form-company">Leonurus Ltd.</span>
+            {form === 'login' ? (
+              <span onClick={() => this.setState({ form: 'register' })}> REGISTER </span>
+            ) : (
+              <span onClick={() => this.setState({ form: 'login' })}> LOGIN </span>
+            )}
             <span className="login-page__wrapper-form-welcome">Welcome to Leo.CRUD</span>
             <FormPanel
-              btnText="Sign in"
+              key={form}
+              btnText={form === 'login' ? 'Sign In' : 'Register'}
               submitCallback={this.handleSubmit}
-              model={loginModel}
+              model={form === 'login' ? loginModel : registerModel}
               loading={loading}
               error={loginError}
             />
-            <span className="login-page__wrapper-form-reset">Forgot password?</span>
+            {form === 'login' && <span className="login-page__wrapper-form-reset">Forgot password?</span>}
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ function FormPanel({ btnText, submitCallback, model, loading, error }) {
       {inputs.map(input => renderInput(input))}
       {error && <div className="text-danger">{error}</div>}
       {loading ? (
-        <div>signing in...</div>
+        <div>actions in progress...</div>
       ) : (
         <div className="form__button" onClick={setSubmit}>
           {btnText}
