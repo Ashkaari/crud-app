@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/loader.scss';
+import '../styles/component-loader.scss';
 
 const Loader = () => (
   <div className="lds-ripple">
