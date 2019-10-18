@@ -24,7 +24,7 @@ router.post('/users', async (req, res) => {
 });
 
 router.post('/users/login', async (req, res) => {
-  /*try {
+  try {
     const { email, password } = req.body;
     const user = await User.findByCredentials(email, password);
 
@@ -33,18 +33,9 @@ router.post('/users/login', async (req, res) => {
     }
 
     const token = await user.generateAuthToken();
-    res.send({ user, token });
+    res.send({ user: { name: user.name, email: user.email }, token });
   } catch (e) {
-    res.status(400).send(e);
-  }*/
-
-  //faking response
-  const { email } = req.body;
-
-  if (email !== '123@tt.ru') {
-    res.status(401).send({ error: 'Login failed! Check your credentials!' });
-  } else {
-    res.send({ user: email });
+    res.status(400).send({ code: 0 });
   }
 });
 

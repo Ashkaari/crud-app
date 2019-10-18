@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import FormPanel from '../components/FormPanel';
@@ -31,7 +32,12 @@ class LoginPage extends Component {
           'Content-Type': 'application/json',
         },
       })
-      .then(res => {})
+      .then(res => {
+        this.setState({
+          ...res.data,
+          loading: false,
+        });
+      })
       .catch(e => {
         if (e.response.data.error) {
           this.setState({
@@ -66,4 +72,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default connect()(LoginPage);
