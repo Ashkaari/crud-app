@@ -1,75 +1,43 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import { connect, useSelector } from 'react-redux';
+
 import FormPanel from '../components/FormPanel';
+import loginModel from '../models/loginModel';
+import { login } from '../actions/user';
 
 import '../styles/page-login.scss';
-import loginModel from '../models/loginModel';
 
-class LoginPage extends Component {
-  constructor() {
-    super();
+const LoginPage = ({ login }) => {
+  const user = useSelector(state => state.user);
 
-    this.state = {
-      loading: false,
-      loginError: false,
-    };
-  }
-
-  handleSubmit = () => {
+  const handleSubmit = () => {
     let payload = {};
     loginModel.forEach(item => (payload[item.name] = item.value));
 
-    this.setState({
-      loading: true,
-      loginError: '',
-    });
-
-    axios
-      .post('users/login', payload, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then(res => {
-        this.setState({
-          ...res.data,
-          loading: false,
-        });
-      })
-      .catch(e => {
-        if (e.response.data.error) {
-          this.setState({
-            loginError: e.response.data.error,
-            loading: false,
-          });
-        }
-      });
+    login(payload);
   };
 
-  render() {
-    const { loading, form, loginError } = this.state;
+  return (
+    <div className="page__login-wrapper">
+      <span className="page__login-wrapper _header">Leonurus Ltd.</span>
+      <NavLink to="/register"> REGISTER </NavLink>
+      <span className="page__login-wrapper _subheader">Welcome to Leo.CRUD</span>
+      <FormPanel
+        btnText={'Sign In'}
+        submitCallback={handleSubmit}
+        model={loginModel}
+        loading={user.loading}
+        error={user.error}
+      />
+      <NavLink to="/forgot_password" className="page__login-wrapper _info">
+        Forgot password?
+      </NavLink>
+    </div>
+  );
+};
 
-    return (
-      <div className="page__login-wrapper">
-        <span className="page__login-wrapper _header">Leonurus Ltd.</span>
-        <NavLink to="/register"> REGISTER </NavLink>
-        <span className="page__login-wrapper _subheader">Welcome to Leo.CRUD</span>
-        <FormPanel
-          key={form}
-          btnText={'Sign In'}
-          submitCallback={this.handleSubmit}
-          model={loginModel}
-          loading={loading}
-          error={loginError}
-        />
-        <NavLink to="/forgot_password" className="page__login-wrapper _info">
-          Forgot password?
-        </NavLink>
-      </div>
-    );
-  }
-}
-
-export default connect()(LoginPage);
+export default connect(
+  null,
+  { login }
+)(LoginPage);

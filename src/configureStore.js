@@ -1,7 +1,7 @@
-import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
-import ReduxThunk from 'redux-thunk';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import user from './reducers/user';
 
-import types from '../models/reduxActions';
+import ReduxThunk from 'redux-thunk';
 
 const rootReducer = combineReducers({ user });
 const composeEnhancers =
@@ -11,18 +11,4 @@ const composeEnhancers =
 
 export default function configureStore(initialState = {}) {
   return createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(ReduxThunk)));
-}
-
-function user(state = {}, action) {
-  switch (action.types) {
-    case types.USER_LOGIN: {
-      return {
-        ...state,
-        user: action.payload,
-      };
-    }
-
-    default:
-      return state;
-  }
 }
