@@ -16,12 +16,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding: 0 20px;
+    padding: 0 40px;
     background-color: $bg-color-white;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1), 0 3px 16px rgba(0, 0, 0, 0.1);
 
     &__logo {
       user-select: none;
+      text-align: left;
       flex-grow: 1;
     }
 
@@ -69,13 +70,63 @@
     top: 0;
     left: 0;
     padding: 80px 0 0;
-    background-color: white;
 
     &__item {
+      @include font("Barlow Regular", 18px, $bg-color-green);
       @include size(100%, 30px);
+      padding-left: 40px;
+      cursor: pointer;
+      box-sizing: border-box;
+      text-decoration: none;
 
-      &-main {
+      &.main {
         @include size(100%, 100px);
+        @include flex(row, center, center);
+        @include font("Barlow Regular", 25px, $bg-color-green);
+        padding: 0;
+        margin-bottom: 20px;
+
+        transition: .3s all linear;
+
+        svg {
+          @include size(40px, 40px);
+          margin-right: 16px;
+
+          g path {
+            transition: .3s all linear;
+          }
+
+        }
+
+        &:hover {
+          color: $bg-color-dark-green;
+
+          svg g path {
+            fill: $bg-color-dark-green;
+          }
+        }
+      }
+
+      &.category {
+        @include size(100%, 30px);
+        @include font("Barlow Regular", 16px, $color-light-green);
+        text-transform: uppercase;
+        text-align: left;
+        pointer-events: none;
+      }
+
+      &.link {
+        @include size(100%, 50px);
+        @include flex(row, flex-start, center);
+        padding-left: 55px;
+
+        & ~ .page__dashboard-menu__item.category {
+          margin-top: 20px;
+        }
+
+        &:hover {
+          background-color: rgba($color-light-green, 0.4);
+        }
       }
     }
   }
