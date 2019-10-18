@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, layout: Layout, ...rest }) => {
-  const isLoggedIn = false;
+  const isLoggedIn = localStorage.getItem('jwtToken');
 
   return (
     <Route
@@ -13,7 +13,12 @@ const PrivateRoute = ({ component: Component, layout: Layout, ...rest }) => {
             <Component {...props} />
           </Layout>
         ) : (
-          <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: { from: props.location, message: 'you need to be authorized to view this page' },
+            }}
+          />
         )
       }
     />

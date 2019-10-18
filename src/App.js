@@ -3,16 +3,19 @@ import { Switch, BrowserRouter, Route } from 'react-router-dom';
 
 // LAYOUTS
 import LoginLayout from './layouts/LoginLayout';
+import DashboardLayout from './layouts/DashboardLayout';
 
 // PAGES
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
 import NotFound from './pages/NotFound';
+import Dashboard from './pages/Dashboard';
 
 // ROUTES
 import MainRoute from './routes/MainRoute';
 
 import './styles/index.scss';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
   return (
@@ -21,6 +24,7 @@ function App() {
         <Switch>
           <MainRoute path="/login" component={LoginPage} layout={LoginLayout} />
           <MainRoute path="/register" component={RegisterPage} layout={LoginLayout} />
+          <PrivateRoute path="/dashboard" component={Dashboard} layout={DashboardLayout} />
           <Route path="*" component={NotFound} />
         </Switch>
       </BrowserRouter>

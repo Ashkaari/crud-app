@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import axios from 'axios';
+
 import FormPanel from '../components/FormPanel';
+import registerModel from '../models/registerModel';
 
 import '../styles/page-login.scss';
-import registerModel from '../models/registerModel';
-import reduxActions from '../models/reduxActions';
 
 class RegisterPage extends Component {
   constructor() {
@@ -17,10 +17,6 @@ class RegisterPage extends Component {
       registrationError: false,
       user: {},
     };
-  }
-
-  componentDidMount() {
-    this.props.dispatch({ type: reduxActions.USER_LOGIN });
   }
 
   handleSubmit = () => {
