@@ -1,8 +1,6 @@
 import React from 'react';
 import { ReactComponent as Logo } from '../background1.ai.svg';
 
-import '../styles/page.scss';
-
 const LoginLayout = props => (
   <div className="page">
     <div className="page__login">

@@ -1,0 +1,30 @@
+@import "styles/_base/mixins";
+@import "styles/_base/variables";
+
+.form__new-patient {
+  @include flex(column, center, flex-start);
+  @include size(100%, 100%);
+  padding: 20px;
+  box-sizing: border-box;
+
+  .form__button {
+    @include size(null, 43px);
+    @include font("Montserrat Regular", 18px);
+    text-transform: uppercase;
+    padding: 0 20px;
+    line-height: 43px;
+    background-color: $bg-color-green;
+    color: $color-white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s linear;
+
+    &:hover {
+      background-color: darken($bg-color-green, 5%);
+    }
+
+    &:active {
+      background-color: darken($bg-color-green, 10%);
+    }
+  }
+}

@@ -1,7 +1,8 @@
-@import "reset";
-@import "mixins";
-@import "variables";
-@import "modifiers";
+@import "_base/reset";
+@import "_base/mixins";
+@import "_base/variables";
+@import "_base/modifiers";
+@import "_base/page";
 
 @font-face {
   font-family: "Montserrat Regular";

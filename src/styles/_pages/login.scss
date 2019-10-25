@@ -1,5 +1,5 @@
-@import "mixins";
-@import "variables";
+@import "styles/_base/mixins";
+@import "styles/_base/variables";
 
 .page__login {
   @include size(65vw, 65vh);

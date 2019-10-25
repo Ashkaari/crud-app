@@ -6,7 +6,7 @@ import FormPanel from '../components/FormPanel';
 import loginModel from '../models/loginModel';
 import { login } from '../actions/user';
 
-import '../styles/page-login.scss';
+import 'styles/_pages/login.scss';
 
 const LoginPage = ({ location, login }) => {
   const user = useSelector(state => state.user);

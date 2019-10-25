@@ -1,8 +1,8 @@
 import React from 'react';
-import '../styles/page.scss';
-import '../styles/page-dashboard.scss';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
+
+import 'styles/_pages/dashboard.scss';
 
 const DashboardLayout = props => {
   return (
@@ -10,7 +10,7 @@ const DashboardLayout = props => {
       <div className="page__dashboard">
         <Header />
         <Menu />
-        {props.children}
+        <div className="page__dashboard-wrapper">{props.children}</div>
       </div>
     </div>
   );

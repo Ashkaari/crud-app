@@ -6,7 +6,7 @@ import axios from 'axios';
 import FormPanel from '../components/FormPanel';
 import registerModel from '../models/registerModel';
 
-import '../styles/page-login.scss';
+import 'styles/_pages/login.scss';
 
 class RegisterPage extends Component {
   constructor() {

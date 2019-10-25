@@ -13,6 +13,9 @@ const Menu = () => {
       <NavLink to="/schedule" className="page__dashboard-menu__item link">
         My Schedule
       </NavLink>
+      <NavLink to="/patients/new" className="page__dashboard-menu__item link">
+        Add new patient
+      </NavLink>
       <NavLink to="/patients" className="page__dashboard-menu__item link">
         Patients List
       </NavLink>
