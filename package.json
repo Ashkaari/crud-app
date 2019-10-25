@@ -1,21 +1,57 @@
 {
-  "name": "crud-app",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "start": "env-cmd -f ./.env nodemon src/app.js"
-  },
+  "name": "assets",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "axios": "^0.19.0",
+    "babel-eslint": "^10.0.3",
     "bcryptjs": "^2.4.3",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.4",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "validator": "^11.1.0"
   },
   "devDependencies": {
     "env-cmd": "^10.0.1",
     "nodemon": "^1.19.3"
+  },
+  "proxy": "http://localhost:3000/",
+  "scripts": {
+    "start": "react-scripts start",
+    "start-server": "env-cmd -f .env.local nodemon server/app.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

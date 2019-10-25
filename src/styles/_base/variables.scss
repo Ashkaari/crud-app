@@ -1,0 +1,29 @@
+$color-white: #ffffff;
+$color-light-green: #a6b8c8;
+
+$bg-color-white: #ffffff;
+$bg-color-snow: #f5f7fb;
+$bg-color-green: #305a5d;
+$bg-color-dark-green: #1A2F33;
+$bg-color-disabled: #838d92;
+$bg-rad-gradient-green: radial-gradient(circle, rgba(48,90,93,1) 0%, rgba(42,53,70,1) 76%, rgba(26,47,51,1) 100%);
+
+$text-dark: #27253d;
+$text-dark-1: lighten($text-dark, 25%);
+$text-disabled: #a9b8bf;
+$text-alert: #b76e6e;
+$text-light-green: #648269;
+
+
+//640 768 1024 1200
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+$breakpoint-desktop: 1200px;
+
+
+//z index
+$z-layer-1: 1;
+$z-layer-2: 2;
+$z-layer-3: 3;
+$z-layer-4: 4;
+$z-layer-5: 5;

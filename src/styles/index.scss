@@ -1,0 +1,25 @@
+@import "_base/reset";
+@import "_base/mixins";
+@import "_base/variables";
+@import "_base/modifiers";
+@import "_base/page";
+
+@font-face {
+  font-family: "Montserrat Regular";
+  src: url("fonts/Montserrat-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Montserrat Bold";
+  src: url("fonts/Montserrat-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Barlow Semi Regular";
+  src: url("fonts/BarlowSemiCondensed-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Barlow Regular";
+  src: url("fonts/Barlow-Regular.otf") format("opentype");
+}

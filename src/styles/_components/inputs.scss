@@ -1,0 +1,73 @@
+@import "styles/_base/mixins";
+@import "styles/_base/variables";
+
+.form__group {
+  @include flex(column, center, flex-start);
+  @include size(100%);
+
+  &-header {
+    @include font("Montserrat Bold", 24px);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  &-inputs {
+    @include flex(row, space-between, center);
+    @include size(100%);
+  }
+}
+
+.input__group {
+  position: relative;
+  margin: 20px 0;
+  max-width: 320px;
+  color: $text-dark;
+  width: 100%;
+
+  .bar {
+    position: relative;
+    display: block;
+    width: 100%;
+
+    &:before {
+      content: '';
+      height: 2px;
+      width: 0;
+      bottom: 0;
+      position: absolute;
+      background: $text-light-green;
+      transition: 0.3s ease all;
+      left: 0;
+    }
+  }
+
+  label {
+    @include font("Barlow Regular", 16px);
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    transition: 0.3s ease all;
+  }
+
+  input {
+    @include font("Barlow Regular", 18px);
+    @include size(100%);
+    box-sizing: border-box;
+    background: none;
+    padding: 10px 10px 10px 5px;
+    border: none;
+    outline: none;
+
+    border-bottom: 1px solid $text-dark;
+
+    &:focus ~ label,
+    &:valid ~ label {
+      @include font("Barlow Regular", 12px, $text-light-green);
+      top: -14px;
+    }
+
+    &:focus ~ .bar:before {
+      width: 100%;
+    }
+  }
+}

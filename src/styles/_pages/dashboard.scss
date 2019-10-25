@@ -1,0 +1,138 @@
+@import "../_base/mixins";
+@import "../_base/variables";
+
+.page__dashboard {
+  @include size(100vw, 100vh);
+  @include flex(column, center, center);
+  position: relative;
+  overflow: hidden;
+  background-color: $bg-color-snow;
+  border-radius: 5px;
+
+  &-header {
+    @include size(100vw, 90px);
+    @include flex(row, flex-start, center);
+    z-index: $z-layer-5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 40px;
+    background-color: $bg-color-white;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1), 0 3px 16px rgba(0, 0, 0, 0.1);
+
+    &__logo {
+      user-select: none;
+      text-align: left;
+      flex-grow: 1;
+    }
+
+    &__appointments {
+      cursor: default;
+      color: $text-dark-1 !important;
+      flex-grow: 2;
+      text-align: left;
+
+      strong {
+        font-family: "Montserrat Bold";
+        font-weight: bolder;
+      }
+    }
+
+    &__user-frame {
+      @include size(250px, 100%);
+      @include flex(row, center, center);
+      cursor: default;
+      flex-grow: 1;
+
+      &__image {
+        @include size(65px, 65px);
+        overflow: hidden;
+        border-radius: 50%;
+
+        img {
+          @include size(100%, auto);
+        }
+      }
+
+      &__name {
+        margin-left: 15px;
+        font-weight: bold;
+        color: $text-dark;
+      }
+    }
+  }
+
+  &-menu {
+    @include size(15vw, 100%);
+    @include flex(column, flex-start, center);
+    z-index: $z-layer-2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 100px 0 0;
+
+    &__item {
+      @include font("Barlow Regular", 18px, $bg-color-green);
+      @include size(100%, 30px);
+      padding-left: 40px;
+      cursor: pointer;
+      box-sizing: border-box;
+      text-decoration: none;
+
+      &.main {
+        @include size(100%, 100px);
+        @include flex(row, center, center);
+        @include font("Barlow Regular", 25px, $bg-color-green);
+        padding: 0;
+        margin-bottom: 20px;
+
+        transition: .3s all linear;
+
+        svg {
+          @include size(40px, 40px);
+          margin-right: 16px;
+
+          g path {
+            transition: .3s all linear;
+          }
+
+        }
+
+        &:hover {
+          color: $bg-color-dark-green;
+
+          svg g path {
+            fill: $bg-color-dark-green;
+          }
+        }
+      }
+
+      &.category {
+        @include size(100%, 30px);
+        @include font("Barlow Regular", 16px, $color-light-green);
+        text-transform: uppercase;
+        text-align: left;
+        pointer-events: none;
+      }
+
+      &.link {
+        @include size(100%, 50px);
+        @include flex(row, flex-start, center);
+        padding-left: 55px;
+
+        & ~ .page__dashboard-menu__item.category {
+          margin-top: 20px;
+        }
+
+        &:hover {
+          background-color: rgba($color-light-green, 0.4);
+        }
+      }
+    }
+  }
+
+  &-wrapper {
+    @include size(85vw, calc(100vh - 100px));
+    padding: 100px 0 0 15vw;
+  }
+}
