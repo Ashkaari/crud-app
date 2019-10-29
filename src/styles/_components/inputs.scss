@@ -12,7 +12,7 @@
   }
 
   &-inputs {
-    @include flex(row, space-between, center);
+    @include flex(row, space-between, flex-start);
     @include size(100%);
   }
 }

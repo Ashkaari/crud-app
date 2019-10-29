@@ -11,7 +11,7 @@
     @include size(null, 43px);
     @include font("Montserrat Regular", 18px);
     text-transform: uppercase;
-    padding: 0 20px;
+    padding: 0 60px;
     line-height: 43px;
     background-color: $bg-color-green;
     color: $color-white;
@@ -25,6 +25,11 @@
 
     &:active {
       background-color: darken($bg-color-green, 10%);
+    }
+
+    &.disabled {
+      pointer-events: none;
+      background-color: $grey;
     }
   }
 }
