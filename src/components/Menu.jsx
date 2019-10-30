@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as Logo } from '../styles/images/dashboard.svg';
+//import { ReactComponent as Logo } from '../styles/images/dashboard.svg';
 
 const Menu = () => {
   return (
     <div className="page__dashboard-menu">
-      <div className="page__dashboard-menu__item main">
+      {/*<div className="page__dashboard-menu__item main">
         <Logo />
         Dashboard
-      </div>
+      </div>*/}
       <div className="page__dashboard-menu__item category">Appointments</div>
       <NavLink to="/schedule" className="page__dashboard-menu__item link">
         My Schedule

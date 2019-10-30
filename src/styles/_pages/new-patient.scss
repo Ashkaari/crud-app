@@ -1,35 +1,38 @@
 @import "styles/_base/mixins";
 @import "styles/_base/variables";
 
-.form__new-patient {
-  @include flex(column, center, flex-start);
-  @include size(100%, 100%);
-  padding: 20px;
-  box-sizing: border-box;
 
-  .form__button {
-    @include size(null, 43px);
-    @include font("Montserrat Regular", 18px);
-    text-transform: uppercase;
-    padding: 0 60px;
-    line-height: 43px;
-    background-color: $bg-color-green;
-    color: $color-white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all .3s linear;
+.new-patient {
+  &__form {
+    @include flex(column, flex-start, flex-start);
+    @include size(100%, 100%);
+    box-sizing: border-box;
 
-    &:hover {
-      background-color: darken($bg-color-green, 5%);
-    }
+    .form__button {
+      @include size(null, 43px);
+      @include font("Montserrat Regular", 18px);
+      text-transform: uppercase;
+      padding: 0 60px;
+      line-height: 43px;
+      background-color: $text-light-green;
+      color: $color-white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all .3s linear;
 
-    &:active {
-      background-color: darken($bg-color-green, 10%);
-    }
+      &:hover {
+        background-color: darken($text-light-green, 5%);
+      }
 
-    &.disabled {
-      pointer-events: none;
-      background-color: $grey;
+      &:active {
+        background-color: darken($text-light-green, 10%);
+      }
+
+      &.disabled {
+        pointer-events: none;
+        user-select: none;
+        background-color: $bg-color-disabled;
+      }
     }
   }
 }

@@ -69,7 +69,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding: 100px 0 0;
+    padding: 110px 0 0;
 
     &__item {
       @include font("Barlow Regular", 18px, $bg-color-green);
@@ -133,6 +133,6 @@
 
   &-wrapper {
     @include size(85vw, calc(100vh - 100px));
-    padding: 100px 0 0 15vw;
+    padding: 110px 0 0 16vw;
   }
 }

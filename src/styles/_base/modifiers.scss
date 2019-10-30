@@ -5,6 +5,14 @@
   margin-top: 5px;
 }
 
+._page-title {
+  @include font("Montserrat Bold", 25px, $text-light-green);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+
 ._header {
   @include font("Montserrat Bold", 36px);
   text-transform: uppercase;

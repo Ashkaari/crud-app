@@ -12,7 +12,7 @@ const Header = () => {
       </span>
       <div className="page__dashboard-header__user-frame">
         <div className="page__dashboard-header__user-frame__image">
-          <img src={require('../styles/images/Antonia-Thomas-Claire.jpg')} alt="avatar" />
+          <img src={require('../styles/images/doctor_profile_image.png')} alt="avatar" />
         </div>
         <div className="page__dashboard-header__user-frame__name _subheader">{user.name}</div>
       </div>

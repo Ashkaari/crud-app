@@ -1,4 +1,5 @@
 export const checkAtLeastLength = (expression, length) => expression && expression.trim().length >= length;
+export const checkExactLength = (expression, length) => expression && expression.trim().length === length;
 
 export const checkIsFilled = expression => expression && expression.length > 0;
 

@@ -7,8 +7,9 @@ import 'styles/_pages/new-patient.scss';
 const NewPatient = () => {
   return (
     <>
+      <div className="new-patient__title _page-title">New patient form</div>
       <FormPanel
-        className={'form__new-patient'}
+        className={'new-patient__form'}
         btnText={'Save'}
         submitCallback={e => console.log(e)}
         model={patientModel}

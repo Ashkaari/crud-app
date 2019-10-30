@@ -4,15 +4,16 @@
 .form__group {
   @include flex(column, center, flex-start);
   @include size(100%);
+  margin-bottom: 30px;
 
   &-header {
-    @include font("Montserrat Bold", 24px);
-    text-transform: uppercase;
-    margin-bottom: 16px;
+    @include font("Montserrat Bold", 20px);
+    //text-transform: uppercase;
+    margin-bottom: 9px;
   }
 
   &-inputs {
-    @include flex(row, space-between, flex-start);
+    @include flex(row, flex-start, flex-start);
     @include size(100%);
   }
 }
@@ -23,6 +24,7 @@
   max-width: 320px;
   color: $text-dark;
   width: 100%;
+  margin-right: 20px;
 
   .bar {
     position: relative;
