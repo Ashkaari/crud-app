@@ -13,7 +13,7 @@ const Comment = ({ children, item }) => {
           <img src={item.user.img} />
         </div>
         <div className="comment__header-info">
-          <span className="_bold">{item.user.name}</span>
+          <span className="comment__header-info__name">{item.user.name}</span>
           <span className="comment__header-info__date">{moment(item.date).format('DD MMM YYYY')}</span>
         </div>
       </div>

@@ -2,6 +2,8 @@
 @import "styles/_base/variables";
 
 .comment {
+  @include font("Roboto", 12px, $onSurface);
+  font-size: 14px;
   display: block;
   text-align: left;
   padding: 15px 20px 0;
@@ -20,8 +22,13 @@
       @include flex(column, center, flex-start);
       margin-left: 10px;
 
+      &__name {
+        font-weight: 700;
+
+      }
       &__date {
-        @include font("Roboto", 12px, $onSurface);
+        color: lighten($onSurface, 40%);
+        font-size: 12px;
         margin-top: 5px;
       }
     }
@@ -37,7 +44,7 @@
 
       &-reply {
         cursor: pointer;
-        font-size: 12px;
+        font-size: 14px;
         color: darken($surface, 20%);
         transition: all .3s linear;
 
