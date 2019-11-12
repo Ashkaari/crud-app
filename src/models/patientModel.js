@@ -108,13 +108,12 @@ const patientModel = [
         name: 'issuingCompany',
         label: 'Issuing company',
         type: 'text',
-        parseFun: parseOnlyLetterAndSpace,
         required: true,
         validators: [
           {
             id: 'issuingCompany-required',
             isValidFun: checkIsFilled,
-            alert: 'Number is empty',
+            alert: 'Field is empty',
           },
         ],
       },

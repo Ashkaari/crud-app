@@ -1,0 +1,103 @@
+@import "styles/_base/mixins";
+@import "styles/_base/variables";
+
+.comment {
+  display: block;
+  text-align: left;
+  padding: 15px 20px 0;
+  max-width: 50vw;
+
+  &__header {
+    @include flex(row, flex-start);
+    margin-bottom: 10px;
+
+    &-image, img {
+      @include size(32px, 32px);
+
+    }
+
+    &-info {
+      @include flex(column, center, flex-start);
+      margin-left: 10px;
+
+      &__date {
+        @include font("Roboto", 12px, $onSurface);
+        margin-top: 5px;
+      }
+    }
+  }
+
+  &__body {
+    @include flex(column, center, flex-start);
+    line-height: 1.5;
+
+    &-tray {
+      @include flex(row, flex-start, center);
+      margin-top: 10px;
+
+      &-reply {
+        cursor: pointer;
+        font-size: 12px;
+        color: darken($surface, 20%);
+        transition: all .3s linear;
+
+        &:hover {
+          color: $primary700;
+        }
+
+        &:active {
+          color: darken($primary700, 20%)
+        }
+      }
+
+      &-report {
+        cursor: pointer;
+        color: darken($surface, 30%);
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &__nested {
+    position: relative;
+    margin: 20px 0 0;
+
+    &-content {
+      padding-left: 20px;
+      border-left: 1px dashed darken($surface, 20%);
+    }
+
+    &-collapse {
+      display: none;
+      @include size(20px, 100%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+
+      &:hover {
+        border-left: 2px solid $primary700;
+      }
+    }
+
+    &-expand {
+      cursor: pointer;
+      color: $primary700;
+      font-size: 14px;
+      margin-bottom: 20px;
+
+      transition: color .3s linear;
+
+      &:hover {
+        color: $error;
+      }
+    }
+
+    &:hover {
+      > .comment__nested-collapse {
+        display: block;
+      }
+    }
+  }
+}
+

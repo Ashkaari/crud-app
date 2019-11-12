@@ -26,6 +26,11 @@
   @include font("Barlow Regular", 16px, $text-light-green);
 }
 
+._bold {
+  @include font("Montserrat Regular", 14px);
+  font-weight: 600;
+}
+
 @media (max-width: $breakpoint-mobile) {
   ._header {
     @include font("Montserrat Bold", 24px);

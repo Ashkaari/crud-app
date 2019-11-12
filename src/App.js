@@ -11,6 +11,7 @@ import RegisterPage from './pages/Register';
 import NotFound from './pages/NotFound';
 import Dashboard from './pages/Dashboard';
 import NewPatient from './pages/NewPatient';
+import Comments from './pages/Comments';
 
 // ROUTES
 import MainRoute from './routes/MainRoute';
@@ -27,6 +28,7 @@ function App() {
           <MainRoute path="/register" component={RegisterPage} layout={LoginLayout} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} layout={DashboardLayout} />
           <PrivateRoute path="/patients/new" component={NewPatient} layout={DashboardLayout} />
+          <PrivateRoute path="/comments" component={Comments} layout={DashboardLayout} />
           <Route path="*" component={NotFound} />
         </Switch>
       </BrowserRouter>

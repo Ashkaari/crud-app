@@ -15,6 +15,7 @@
   &-inputs {
     @include flex(row, flex-start, flex-start);
     @include size(100%);
+    flex-wrap: wrap;
   }
 }
 
