@@ -27,7 +27,7 @@ function App() {
           <MainRoute path="/login" component={LoginPage} layout={LoginLayout} />
           <MainRoute path="/register" component={RegisterPage} layout={LoginLayout} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} layout={DashboardLayout} />
-          <PrivateRoute path="/patients/new" component={NewPatient} layout={DashboardLayout} />
+          <PrivateRoute exact path="/patients/new" component={NewPatient} layout={DashboardLayout} />
           <PrivateRoute path="/comments" component={Comments} layout={DashboardLayout} />
           <Route path="*" component={NotFound} />
         </Switch>

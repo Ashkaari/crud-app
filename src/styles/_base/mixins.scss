@@ -12,7 +12,7 @@
   align-items: $alignItems;
 }
 
-@mixin font($font: "Montserrat Regular", $size: 14px, $color: $text-dark) {
+@mixin font($font: "Roboto", $size: 14px, $color: $onPrimary) {
   font-family: $font, sans-serif;
   font-size: $size;
   color: $color;

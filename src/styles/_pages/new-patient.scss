@@ -10,22 +10,23 @@
 
     .form__button {
       @include size(null, 43px);
-      @include font("Montserrat Regular", 18px);
+      @include font("Roboto", 18px);
       text-transform: uppercase;
       padding: 0 60px;
       line-height: 43px;
-      background-color: $text-light-green;
-      color: $color-white;
+      background-color: $secondary500;
+      color: $onSecondary;
       border-radius: 4px;
       cursor: pointer;
       transition: all .3s linear;
+      user-select: none;
 
       &:hover {
-        background-color: darken($text-light-green, 5%);
+        background-color: darken($secondary500, 5%);
       }
 
       &:active {
-        background-color: darken($text-light-green, 10%);
+        background-color: $secondary700;
       }
 
       &.disabled {

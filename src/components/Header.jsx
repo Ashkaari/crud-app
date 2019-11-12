@@ -14,7 +14,7 @@ const Header = () => {
         <div className="page__dashboard-header__user-frame__image">
           <img src={require('../styles/images/doctor_profile_image.png')} alt="avatar" />
         </div>
-        <div className="page__dashboard-header__user-frame__name _subheader">{user.name}</div>
+        <div className="page__dashboard-header__user-frame__name">{user.name}</div>
       </div>
     </div>
   );

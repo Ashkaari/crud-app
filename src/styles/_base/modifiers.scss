@@ -1,12 +1,12 @@
 @import "variables";
 
 .text-danger {
-  @include font("Barlow Regular", 14px, $text-alert);
+  @include font("Roboto", 14px, $error);
   margin-top: 5px;
 }
 
 ._page-title {
-  @include font("Montserrat Bold", 25px, $text-light-green);
+  @include font("Roboto Condensed", 24px, $onSurface);
   text-transform: uppercase;
   margin-bottom: 40px;
   text-align: left;
@@ -14,20 +14,20 @@
 
 
 ._header {
-  @include font("Montserrat Bold", 36px);
+  @include font("Montserrat Bold", 36px, lighten($primary500, 30%));
   text-transform: uppercase;
 }
 
 ._subheader {
-  @include font("Montserrat Regular", 20px);
+  @include font("Roboto Condensed", 20px, lighten($primary500, 30%));
 }
 
 ._info {
-  @include font("Barlow Regular", 16px, $text-light-green);
+  @include font("Roboto", 14px, $onSurface);
 }
 
 ._bold {
-  @include font("Montserrat Regular", 14px);
+  @include font("Roboto", 14px, $onSurface);
   font-weight: 600;
 }
 
@@ -37,11 +37,11 @@
   }
 
   ._subheader {
-    @include font("Montserrat Regular", 16px);
+    @include font("Roboto Condensed", 16px);
   }
 
   .text-danger {
-    @include font("Barlow Regular", 14px, darken($text-alert, 5%));
+    @include font("Roboto", 14px, $error);
     font-weight: bold;
   }
 }

@@ -7,7 +7,8 @@
   margin-bottom: 30px;
 
   &-header {
-    @include font("Montserrat Bold", 20px);
+    @include font("Roboto", 22px);
+    font-weight: 500;
     //text-transform: uppercase;
     margin-bottom: 9px;
   }
@@ -23,7 +24,7 @@
   position: relative;
   margin: 20px 0;
   max-width: 320px;
-  color: $text-dark;
+  color: $onSurface;
   width: 100%;
   margin-right: 20px;
 
@@ -38,14 +39,14 @@
       width: 0;
       bottom: 0;
       position: absolute;
-      background: $text-light-green;
+      background: $primary500;
       transition: 0.3s ease all;
       left: 0;
     }
   }
 
   label {
-    @include font("Barlow Regular", 16px);
+    @include font("Roboto", 16px);
     position: absolute;
     left: 5px;
     top: 10px;
@@ -53,7 +54,7 @@
   }
 
   input {
-    @include font("Barlow Regular", 18px);
+    @include font("Roboto", 18px);
     @include size(100%);
     box-sizing: border-box;
     background: none;
@@ -61,11 +62,11 @@
     border: none;
     outline: none;
 
-    border-bottom: 1px solid $text-dark;
+    border-bottom: 1px solid $onSurface;
 
     &:focus ~ label,
     &:valid ~ label {
-      @include font("Barlow Regular", 12px, $text-light-green);
+      @include font("Roboto", 12px, $primary500);
       top: -14px;
     }
 
