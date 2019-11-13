@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-// DONE: фио, пол, дата рождения, телефон, почта, возраст (виртуальное свойство), паспортные данные, адрес регистрации
-// снилс, полис омс, дата заполнения карты, иесто работы
-
 // todo: подумать про льготы
+// todo: validation, creation_date (virtual ?)
 const patientSchema = mongoose.Schema({
   name: {
     type: String,
@@ -45,6 +43,8 @@ const patientSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
+  snils: { type: Number, required: true, unique: true },
+  oms: { type: Number, required: true, unique: true },
   passport: {
     number: { type: Number, required: true },
     serial: { type: Number, required: true },
@@ -59,6 +59,14 @@ const patientSchema = mongoose.Schema({
     building: { type: String, required: true },
     apartment: { type: String, required: true },
   },
+  job: {
+    type: {
+      company_name: { type: String, required: true },
+      company_specialization: { type: String, required: false },
+    },
+    required: false,
+  },
+
   discounts: {
     type: String,
     enum: ['senior', 'disabled', 'student', 'under16', 'none'],

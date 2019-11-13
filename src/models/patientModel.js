@@ -55,6 +55,88 @@ const patientModel = [
     ],
   },
   {
+    name: 'additionalInfo',
+    label: 'Additional info',
+    type: 'group',
+    inputs: [
+      {
+        name: 'email',
+        label: 'Email',
+        type: 'text',
+        required: true,
+        validators: [
+          {
+            id: 'email-pattern',
+            isValidFun: checkEmailPattern,
+            alert: 'Email is not valid',
+          },
+          {
+            id: 'email-required',
+            isValidFun: checkIsFilled,
+            alert: 'Email is empty',
+          },
+        ],
+      },
+      {
+        name: 'phone',
+        label: 'Phone',
+        type: 'text',
+        parseFun: parseOnlyNumbers,
+        required: true,
+        validators: [
+          {
+            id: 'phone-required',
+            isValidFun: checkIsFilled,
+            alert: 'Phone number is empty',
+          },
+          {
+            id: 'phone-length',
+            isValidFun: expression => checkExactLength(expression, 11),
+            alert: 'Number should contain 11 digits',
+          },
+        ],
+      },
+      {
+        name: 'snils',
+        label: 'SNILS',
+        type: 'text',
+        parseFun: parseOnlyNumbers,
+        required: true,
+        validators: [
+          {
+            id: 'snils-required',
+            isValidFun: checkIsFilled,
+            alert: 'SNILS is empty',
+          },
+          {
+            id: 'snils-length',
+            isValidFun: expression => checkExactLength(expression, 11),
+            alert: 'SNILS should contain 11 digits',
+          },
+        ],
+      },
+      {
+        name: 'oms',
+        label: 'Health insurance number',
+        type: 'text',
+        parseFun: parseOnlyNumbers,
+        required: true,
+        validators: [
+          {
+            id: 'oms-required',
+            isValidFun: checkIsFilled,
+            alert: 'HIN is empty',
+          },
+          {
+            id: 'oms-length',
+            isValidFun: expression => checkExactLength(expression, 16),
+            alert: 'HIN should contain 16 digits',
+          },
+        ],
+      },
+    ],
+  },
+  {
     name: 'passport',
     label: 'Passport info',
     type: 'group',
@@ -207,33 +289,28 @@ const patientModel = [
     ],
   },
   {
-    name: 'email',
-    label: 'Email',
-    type: 'text',
-    required: true,
-    validators: [
+    name: 'job',
+    label: 'Job',
+    type: 'group',
+    inputs: [
       {
-        id: 'email-pattern',
-        isValidFun: checkEmailPattern,
-        alert: 'Email is not valid',
+        name: 'company_name',
+        label: 'Company name',
+        type: 'text',
+        required: true,
+        validators: [
+          {
+            id: 'company_name-required',
+            isValidFun: checkIsFilled,
+            alert: 'Company name is empty',
+          },
+        ],
       },
       {
-        id: 'email-required',
-        isValidFun: checkIsFilled,
-        alert: 'Email is empty',
-      },
-    ],
-  },
-  {
-    name: 'phone',
-    label: 'Phone',
-    type: 'text',
-    required: true,
-    validators: [
-      {
-        id: 'phone-required',
-        isValidFun: checkIsFilled,
-        alert: 'Phone number is empty',
+        name: 'company_specialization',
+        label: 'Specialization',
+        type: 'text',
+        required: true,
       },
     ],
   },

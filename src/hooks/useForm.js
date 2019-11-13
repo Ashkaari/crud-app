@@ -8,19 +8,19 @@ const useForm = (initModel, submitCallBack) => {
     inputs.forEach(i => {
       let group = i.type === 'group' ? i.inputs : inputs;
       parseInputGroup(group, e);
+
+      setInputs([...inputs]);
     });
   };
 
-  const parseInputGroup = (inputs, e) => {
-    inputs.forEach(i => {
+  const parseInputGroup = (group, e) => {
+    group.forEach(i => {
       if (i.name === e.target.name) {
         i.value = i.type === 'checkbox' ? e.target.checked : e.target.value;
         parseInput(i);
         validateInput(i);
       }
     });
-
-    setInputs([...inputs]);
   };
 
   const validateInputGroup = inputs => {
