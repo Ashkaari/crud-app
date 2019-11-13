@@ -9,19 +9,19 @@ import Loader from './Loader';
 import 'styles/_components/inputs.scss';
 
 function FormPanel({ className, btnText, submitCallback, model, loading, error }) {
-  const [inputs, setInputs, setSubmit] = useForm(model, submitCallback);
+  const [fields, setInputs, setSubmit] = useForm(model, submitCallback);
 
   const Components = { TextInput, PasswordInput, DateInput };
 
   const capitalize = expression => expression.charAt(0).toUpperCase() + expression.slice(1);
 
-  const renderInput = input => {
-    if (input.type === 'group') {
+  const renderInput = field => {
+    if (field.type === 'group') {
       return (
-        <div className="form__group" key={input.name}>
-          <span className="form__group-header">{input.label}</span>
+        <div className="form__group" key={field.name}>
+          <span className="form__group-header">{field.label}</span>
           <div className="form__group-inputs">
-            {input.inputs.map(input => {
+            {field.inputs.map(input => {
               const Component = Components[capitalize(input.type) + 'Input'];
               return <Component key={input.name} setInputs={setInputs} {...input} />;
             })}
@@ -29,16 +29,27 @@ function FormPanel({ className, btnText, submitCallback, model, loading, error }
         </div>
       );
     } else {
-      const Component = Components[capitalize(input.type) + 'Input'];
-      return <Component key={input.name} setInputs={setInputs} {...input} />;
+      const Component = Components[capitalize(field.type) + 'Input'];
+      return <Component key={field.name} setInputs={setInputs} {...field} />;
     }
   };
 
-  const requiredAndNotFilled = inputs.some(i => i.required && (!i.value || i.alert));
+  let requiredAndNotFilled = false;
+
+  if (fields.some(i => i.type === 'group')) {
+    for (let field of fields) {
+      requiredAndNotFilled =
+        field.type === 'group' && field.required
+          ? field.inputs.some(i => i.required && (!i.value || i.alert))
+          : field.required && (!field.value || field.alert);
+
+      if (requiredAndNotFilled) break;
+    }
+  }
 
   return (
     <div className={className || 'form'}>
-      {inputs.map(input => renderInput(input))}
+      {fields.map(field => renderInput(field))}
       {error && <div className="text-danger">{error}</div>}
       {loading ? (
         <Loader />

@@ -1,22 +1,27 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
-import api from '../models/apiModel';
+import { post } from '../models/apiModel';
 import setAuthorizationToken from '../services/setAuthorizationToken';
 
-import { USER_LOGIN_FAILURE, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS } from './index';
+import {
+  USER_LOGIN_FAILURE,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+  USER_REGISTER_FAILURE,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+} from './index';
 
-export function setUserData(user) {
-  return {
-    type: USER_LOGIN_SUCCESS,
-    payload: user,
-  };
-}
+export const setUserData = user => ({
+  type: USER_LOGIN_SUCCESS,
+  payload: user,
+});
 
 export const login = data => dispatch => {
   dispatch({ type: USER_LOGIN_REQUEST });
 
   axios
-    .post(api.login, data, {
+    .post(post.user_login, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -28,5 +33,32 @@ export const login = data => dispatch => {
     })
     .catch(e => {
       dispatch({ type: USER_LOGIN_FAILURE, payload: e.response.data });
+    });
+};
+
+export const setRegisterSuccess = data => ({ type: USER_REGISTER_SUCCESS, payload: data });
+export const setRegisterFailure = error => ({ type: USER_REGISTER_FAILURE, payload: error });
+
+export const register = data => dispatch => {
+  dispatch({ type: USER_REGISTER_REQUEST });
+
+  axios
+    .post('users', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(res => {
+      dispatch(setRegisterSuccess({ ...res.data }));
+      /*this.setState({ ...res.data, loading: false });*/
+    })
+    .catch(e => {
+      const code = e.response.data.code;
+      dispatch(setRegisterFailure(code ? 'User already exists' : 'Unhandled error'));
+
+      /*this.setState({
+        registrationError: code ? 'User already exists' : 'Unhandled error',
+        loading: false,
+      });*/
     });
 };

@@ -6,6 +6,7 @@ const patientModel = [
     name: 'fullname',
     label: 'Full name',
     type: 'group',
+    required: true,
     inputs: [
       {
         name: 'name',
@@ -50,7 +51,6 @@ const patientModel = [
         label: 'Patronymic',
         type: 'text',
         parseFun: parseOnlyLetterAndSpace,
-        required: true,
       },
     ],
   },
@@ -58,6 +58,7 @@ const patientModel = [
     name: 'additionalInfo',
     label: 'Additional info',
     type: 'group',
+    required: true,
     inputs: [
       {
         name: 'email',
@@ -140,6 +141,7 @@ const patientModel = [
     name: 'passport',
     label: 'Passport info',
     type: 'group',
+    required: true,
     inputs: [
       {
         name: 'number',
@@ -218,6 +220,7 @@ const patientModel = [
     name: 'address',
     label: 'Actual address',
     type: 'group',
+    required: true,
     inputs: [
       {
         name: 'postal_number',
@@ -292,6 +295,7 @@ const patientModel = [
     name: 'job',
     label: 'Job',
     type: 'group',
+    required: false,
     inputs: [
       {
         name: 'company_name',
@@ -310,7 +314,7 @@ const patientModel = [
         name: 'company_specialization',
         label: 'Specialization',
         type: 'text',
-        required: true,
+        required: false,
       },
     ],
   },
