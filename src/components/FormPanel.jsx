@@ -2,6 +2,7 @@ import React from 'react';
 
 import useForm from '../hooks/useForm';
 import TextInput from './inputs/TextInput';
+import DateInput from './inputs/DateInput';
 import PasswordInput from './inputs/PasswordInput';
 import Loader from './Loader';
 
@@ -10,7 +11,7 @@ import 'styles/_components/inputs.scss';
 function FormPanel({ className, btnText, submitCallback, model, loading, error }) {
   const [inputs, setInputs, setSubmit] = useForm(model, submitCallback);
 
-  const Components = { TextInput, PasswordInput };
+  const Components = { TextInput, PasswordInput, DateInput };
 
   const capitalize = expression => expression.charAt(0).toUpperCase() + expression.slice(1);
 

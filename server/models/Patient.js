@@ -47,15 +47,13 @@ const patientSchema = mongoose.Schema({
   },
   passport: {
     number: { type: Number, required: true },
-    series: { type: Number, required: true },
+    serial: { type: Number, required: true },
     issued_on: { type: Date, required: true },
-    issued_organization: {
-      name: { type: String, required: true },
-      code: { type: String, required: true },
-    },
+    issuing_company: { type: String, required: true },
+    issuing_company_code: { type: String, required: true },
   },
   address: {
-    index: { type: Number, required: true },
+    postal_number: { type: Number, required: true },
     city: { type: String, required: true },
     street: { type: String, required: true },
     building: { type: String, required: true },

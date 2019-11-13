@@ -4,7 +4,7 @@ const useForm = (initModel, submitCallBack) => {
   const [inputs, setInputs] = useState(initModel);
 
   const handleChange = e => {
-    e.persist();
+    e.persist && e.persist();
     inputs.forEach(i => {
       let group = i.type === 'group' ? i.inputs : inputs;
       parseInputGroup(group, e);

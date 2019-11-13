@@ -55,7 +55,7 @@ const patientModel = [
     ],
   },
   {
-    name: 'passportData',
+    name: 'passport',
     label: 'Passport info',
     type: 'group',
     inputs: [
@@ -79,7 +79,7 @@ const patientModel = [
         ],
       },
       {
-        name: 'serialNumber',
+        name: 'serial',
         label: 'Serial number',
         type: 'text',
         parseFun: parseOnlyNumbers,
@@ -98,14 +98,13 @@ const patientModel = [
         ],
       },
       {
-        name: 'issuedOn',
+        name: 'issued_on',
         label: 'Issued on',
-        type: 'text',
-        parseFun: parseOnlyLetterAndSpace,
+        type: 'date',
         required: true,
       },
       {
-        name: 'issuingCompany',
+        name: 'issuing_company',
         label: 'Issuing company',
         type: 'text',
         required: true,
@@ -118,16 +117,90 @@ const patientModel = [
         ],
       },
       {
-        name: 'issuingCompanyCode',
+        name: 'issuing_company_code',
         label: 'Issuing company code',
         type: 'text',
         parseFun: parseOnlyNumbers,
         required: true,
         validators: [
           {
-            id: 'issuingCompanyCode-required',
+            id: 'issuing_company_code-required',
             isValidFun: checkIsFilled,
             alert: 'Code is empty',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'address',
+    label: 'Actual address',
+    type: 'group',
+    inputs: [
+      {
+        name: 'postal_number',
+        label: 'Postal index',
+        type: 'text',
+        parseFun: parseOnlyNumbers,
+        required: true,
+        validators: [
+          {
+            id: 'postal_number-required',
+            isValidFun: checkIsFilled,
+            alert: 'Postal index is empty',
+          },
+        ],
+      },
+      {
+        name: 'city',
+        label: 'City',
+        type: 'text',
+        parseFun: parseOnlyLetterAndSpace,
+        required: true,
+        validators: [
+          {
+            id: 'city-required',
+            isValidFun: checkIsFilled,
+            alert: 'City is empty',
+          },
+        ],
+      },
+      {
+        name: 'street',
+        label: 'Street',
+        type: 'text',
+        required: true,
+        validators: [
+          {
+            id: 'street-required',
+            isValidFun: checkIsFilled,
+            alert: 'Street is empty',
+          },
+        ],
+      },
+      {
+        name: 'building',
+        label: 'Building number',
+        type: 'text',
+        required: true,
+        validators: [
+          {
+            id: 'building-required',
+            isValidFun: checkIsFilled,
+            alert: 'Building number is empty',
+          },
+        ],
+      },
+      {
+        name: 'apartment',
+        label: 'Apartment number',
+        type: 'text',
+        required: true,
+        validators: [
+          {
+            id: 'building-required',
+            isValidFun: checkIsFilled,
+            alert: 'Apartment number is empty',
           },
         ],
       },
@@ -148,6 +221,19 @@ const patientModel = [
         id: 'email-required',
         isValidFun: checkIsFilled,
         alert: 'Email is empty',
+      },
+    ],
+  },
+  {
+    name: 'phone',
+    label: 'Phone',
+    type: 'text',
+    required: true,
+    validators: [
+      {
+        id: 'phone-required',
+        isValidFun: checkIsFilled,
+        alert: 'Phone number is empty',
       },
     ],
   },
