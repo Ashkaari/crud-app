@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { isEmpty } from 'lodash';
 
-import useForm from '../hooks/useForm';
 import TextInput from './inputs/TextInput';
 import DateInput from './inputs/DateInput';
 import PasswordInput from './inputs/PasswordInput';
+import RadioInput from './inputs/RadioInput';
+
 import Loader from './Loader';
+import useForm from '../hooks/useForm';
 
 import 'styles/_components/inputs.scss';
 
@@ -13,7 +15,7 @@ const FormPanel = ({ className, btnText, submitCallback, model, loading, error, 
   const [fields, setInputs, setSubmit, setErrors] = useForm(model, submitCallback);
   const [needParsing, toggleParse] = useState(false);
 
-  const Components = { TextInput, PasswordInput, DateInput };
+  const Components = { TextInput, PasswordInput, DateInput, RadioInput };
 
   if (!isEmpty(validationErrors) && !loading && needParsing) {
     setErrors(fields, validationErrors);
@@ -23,21 +25,49 @@ const FormPanel = ({ className, btnText, submitCallback, model, loading, error, 
   const capitalize = expression => expression.charAt(0).toUpperCase() + expression.slice(1);
 
   const renderInput = field => {
-    if (field.type === 'group') {
-      return (
-        <div className="form__group" key={field.name}>
-          <span className="form__group-header">{field.label}</span>
-          <div className="form__group-inputs">
-            {field.inputs.map(input => {
-              const Component = Components[capitalize(input.type) + 'Input'];
-              return <Component key={input.name} setInputs={setInputs} {...input} />;
-            })}
+    const Component = Components[capitalize(field.type) + 'Input'];
+
+    switch (field.type) {
+      case 'group': {
+        return (
+          <div className="form__group" key={field.name}>
+            <span className="form__group-header">{field.label}</span>
+            <div className="form__group-inputs">
+              {field.inputs.map(input => {
+                const Component = Components[capitalize(input.type) + 'Input'];
+                return <Component key={input.name} setInputs={setInputs} {...input} />;
+              })}
+            </div>
           </div>
-        </div>
-      );
-    } else {
-      const Component = Components[capitalize(field.type) + 'Input'];
-      return <Component key={field.name} setInputs={setInputs} {...field} />;
+        );
+      }
+
+      case 'radio': {
+        return (
+          <div className="form__group" key={field.name}>
+            <span className="form__group-header">{field.label}</span>
+            <div className="form__group-inputs">
+              {field.enum.map(item => {
+                return (
+                  <Component
+                    key={item}
+                    checked={item === field.value}
+                    type={field.type}
+                    name={field.name}
+                    label={capitalize(item)}
+                    value={item}
+                    setInputs={setInputs}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        );
+      }
+
+      default: {
+        return <Component key={field.name} setInputs={setInputs} {...field} />;
+      }
     }
   };
 

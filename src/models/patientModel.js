@@ -57,11 +57,26 @@ const patientModel = [
     ],
   },
   {
+    name: 'sex',
+    label: 'Gender',
+    type: 'radio',
+    enum: ['male', 'female'],
+    value: 'male',
+    required: true,
+  },
+  {
     name: 'additionalInfo',
     label: 'Additional info',
     type: 'group',
     required: true,
     inputs: [
+      {
+        name: 'birthdate',
+        label: 'Birthday',
+        type: 'date',
+        required: true,
+        value: new Date('1990-01-01'),
+      },
       {
         name: 'email',
         label: 'Email',

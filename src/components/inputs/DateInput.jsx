@@ -22,13 +22,14 @@ const DateInput = ({ name, label, required, value, alert, setInputs }) => {
         id={name}
         name={name}
         type="text"
-        defaultValue={value ? moment(value).format('DD.MM.YYYY') : ''}
+        value={value ? moment(value).format('DD.MM.YYYY') : ''}
         onClick={() => setVisibility(!open)}
       />
       <label htmlFor={name}>{label}</label>
       <span className="bar" />
       {open && (
         <Calendar
+          value={value}
           onChange={e => {
             setVisibility(false);
             setInputs({ target: { name, value: e } });
