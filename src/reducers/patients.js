@@ -2,7 +2,8 @@ import { POST_NEW_PATIENT_REQUEST, POST_NEW_PATIENT_SUCCESS, POST_NEW_PATIENT_FA
 
 const defaultState = {
   loading: false,
-  error: null,
+  GlobalError: null,
+  ValidationError: null,
   patients: [],
 };
 
@@ -12,6 +13,8 @@ export default function patients(state = defaultState, action) {
       return {
         ...state,
         loading: true,
+        GlobalError: null,
+        ValidationError: null,
       };
     }
 
@@ -27,7 +30,7 @@ export default function patients(state = defaultState, action) {
       return {
         ...state,
         loading: false,
-        error: 'Error occured',
+        [action.payload.type]: action.payload.errors,
       };
     }
 

@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import App from './App';
 import configureStore from './configureStore';
 import setAuthorizationToken from './services/setAuthorizationToken';
-import { setUserData } from './actions/user';
+import { setUserLoginSuccess } from './actions/user';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -14,7 +14,7 @@ const store = configureStore();
 
 if (localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);
-  store.dispatch(setUserData(jwt.decode(localStorage.jwtToken)));
+  store.dispatch(setUserLoginSuccess(jwt.decode(localStorage.jwtToken)));
 }
 
 ReactDOM.render(

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { isEmpty } from 'lodash';
 
 import useForm from '../hooks/useForm';
 import TextInput from './inputs/TextInput';
@@ -8,10 +9,16 @@ import Loader from './Loader';
 
 import 'styles/_components/inputs.scss';
 
-function FormPanel({ className, btnText, submitCallback, model, loading, error }) {
-  const [fields, setInputs, setSubmit] = useForm(model, submitCallback);
+const FormPanel = ({ className, btnText, submitCallback, model, loading, error, validationErrors }) => {
+  const [fields, setInputs, setSubmit, setErrors] = useForm(model, submitCallback);
+  const [needParsing, toggleParse] = useState(false);
 
   const Components = { TextInput, PasswordInput, DateInput };
+
+  if (!isEmpty(validationErrors) && !loading && needParsing) {
+    setErrors(fields, validationErrors);
+    toggleParse(false);
+  }
 
   const capitalize = expression => expression.charAt(0).toUpperCase() + expression.slice(1);
 
@@ -54,12 +61,18 @@ function FormPanel({ className, btnText, submitCallback, model, loading, error }
       {loading ? (
         <Loader />
       ) : (
-        <div className={`form__button ${requiredAndNotFilled ? 'disabled' : ''}`} onClick={setSubmit}>
+        <div
+          className={`form__button ${requiredAndNotFilled ? 'disabledss' : ''}`}
+          onClick={() => {
+            toggleParse(true);
+            setSubmit();
+          }}
+        >
           {btnText}
         </div>
       )}
     </div>
   );
-}
+};
 
 export default FormPanel;

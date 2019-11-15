@@ -7,7 +7,7 @@ import { addNewPatient } from '../actions/patients';
 
 import 'styles/_pages/new-patient.scss';
 
-const NewPatient = () => {
+const NewPatient = ({ addNewPatient, loading, GlobalError, ValidationError }) => {
   const handleSubmit = () => {
     let patient = {};
 
@@ -16,15 +16,17 @@ const NewPatient = () => {
         if (['fullname', 'additionalInfo'].includes(field.name)) {
           field.inputs.forEach(input => (patient[input.name] = input.value));
         } else {
-          patient[field.name] = field.inputs.forEach(input => ({ [input.name]: input.value }));
+          patient[field.name] = {};
+          field.inputs.forEach(input => (patient[field.name][input.name] = input.value));
         }
       } else {
         patient[field.name] = field.value;
       }
     });
 
-    console.log('patient parsed', patient);
+    addNewPatient(patient);
   };
+
   return (
     <>
       <div className="new-patient__title _page-title">New patient form</div>
@@ -33,8 +35,9 @@ const NewPatient = () => {
         btnText={'Save'}
         submitCallback={handleSubmit}
         model={patientModel}
-        loading={false}
-        error={false}
+        loading={loading}
+        error={GlobalError}
+        validationErrors={ValidationError}
       />
     </>
   );
@@ -44,7 +47,8 @@ export default connect(
   state => ({
     loading: state.patients.loading,
     message: state.patients.message,
-    error: state.patients.error,
+    GlobalError: state.patients.GlobalError,
+    ValidationError: state.patients.ValidationError,
   }),
   { addNewPatient }
 )(NewPatient);

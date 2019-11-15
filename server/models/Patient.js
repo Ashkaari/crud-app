@@ -21,6 +21,7 @@ const patientSchema = mongoose.Schema({
   },
   sex: {
     type: String,
+    required: true,
     enum: ['male', 'female'],
   },
   birthdate: {

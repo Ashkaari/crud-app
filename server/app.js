@@ -1,5 +1,6 @@
 const express = require('express');
 const userRouter = require('./routers/user');
+const patientRouter = require('./routers/patient');
 
 const port = process.env.PORT;
 
@@ -9,6 +10,7 @@ const app = express();
 
 app.use(express.json());
 app.use(userRouter);
+app.use(patientRouter);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

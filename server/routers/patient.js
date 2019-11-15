@@ -10,7 +10,13 @@ router.post('/patients/add', async (req, res) => {
 
     res.status(201).send();
   } catch (e) {
-    res.status(400).send(e);
+    if (e.name === 'ValidationError') {
+      let errors = {};
+      Object.values(e.errors).forEach(error => (errors[error.path] = error.message));
+      res.status(422).send({ type: e.name, errors });
+    } else {
+      res.status(400).send({ type: 'GlobalError', errors: 'Unknown error occured' });
+    }
   }
 });
 

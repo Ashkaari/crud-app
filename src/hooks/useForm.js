@@ -13,6 +13,40 @@ const useForm = (initModel, submitCallBack) => {
     });
   };
 
+  const handleSubmit = e => {
+    e && e.preventDefault();
+    inputs.forEach(i => {
+      if (i.type === 'group') {
+        validateInputGroup(i.inputs);
+      } else {
+        validateInput(i);
+      }
+    });
+
+    inputs.some(i => i.alert) ? setInputs([...inputs]) : submitCallBack(inputs);
+  };
+
+  const handleRequestValidation = (inputs, errors) => {
+    for (let key in errors) {
+      let errorPath = key.split('.');
+      let fieldIndex = inputs.findIndex(input => input.name === errorPath[0]);
+
+      if (fieldIndex === -1) continue;
+      if (errorPath.length > 1) {
+        for (let i = 0; i < inputs[fieldIndex].inputs.length; i++) {
+          let input = inputs[fieldIndex].inputs[i];
+          if (input.name === errorPath[1]) {
+            input.alert = errors[key];
+            break;
+          }
+        }
+      } else {
+        inputs[fieldIndex] = { ...inputs[fieldIndex], alert: errors[key] };
+      }
+    }
+    setInputs([...inputs]);
+  };
+
   const parseInputGroup = (group, e) => {
     group.forEach(i => {
       if (i.name === e.target.name) {
@@ -23,23 +57,11 @@ const useForm = (initModel, submitCallBack) => {
     });
   };
 
+  const parseInput = input => (input.value = input.parseFun ? input.parseFun(input.value) : input.value);
+
   const validateInputGroup = inputs => {
     inputs.forEach(i => validateInput(i));
   };
-
-  const handleSubmit = e => {
-    e && e.preventDefault();
-    inputs.forEach(i => {
-      if (i.type === 'group') {
-        validateInputGroup(i.inputs);
-      } else {
-        validateInput(i);
-      }
-    });
-    inputs.some(i => i.alert) ? setInputs([...inputs]) : submitCallBack(inputs);
-  };
-
-  const parseInput = input => (input.value = input.parseFun ? input.parseFun(input.value) : input.value);
 
   const validateInput = input => {
     let alert = null;
@@ -48,7 +70,7 @@ const useForm = (initModel, submitCallBack) => {
     input.alert = alert;
   };
 
-  return [inputs, handleChange, handleSubmit];
+  return [inputs, handleChange, handleSubmit, handleRequestValidation];
 };
 
 export default useForm;
