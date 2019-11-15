@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import FormPanel from '../components/FormPanel';
 import patientModel from '../models/patientModel';
 import { addNewPatient } from '../actions/patients';
 
 import 'styles/_pages/new-patient.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
-const NewPatient = ({ addNewPatient, loading, GlobalError, ValidationError }) => {
+const NewPatient = ({ addNewPatient, loading, ValidationError }) => {
   const handleSubmit = () => {
     let patient = {};
 
@@ -36,8 +38,18 @@ const NewPatient = ({ addNewPatient, loading, GlobalError, ValidationError }) =>
         submitCallback={handleSubmit}
         model={patientModel}
         loading={loading}
-        error={GlobalError}
         validationErrors={ValidationError}
+      />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange
+        draggable
+        pauseOnHover
       />
     </>
   );
