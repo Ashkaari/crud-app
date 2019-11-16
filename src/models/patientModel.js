@@ -14,7 +14,6 @@ const patientModel = [
         type: 'text',
         parseFun: parseOnlyLetterAndSpace,
         required: true,
-        value: 'Xenia',
         validators: [
           {
             id: 'name-required',
@@ -34,7 +33,6 @@ const patientModel = [
         type: 'text',
         parseFun: parseOnlyLetterAndSpace,
         required: true,
-        value: 'Parshikova',
         validators: [
           {
             id: 'lastname-required',
@@ -75,14 +73,12 @@ const patientModel = [
         label: 'Birthday',
         type: 'date',
         required: true,
-        value: new Date('1990-01-01'),
       },
       {
         name: 'email',
         label: 'Email',
         type: 'text',
         required: true,
-        value: 'heal@me.pls',
         validators: [
           {
             id: 'email-pattern',
@@ -102,7 +98,6 @@ const patientModel = [
         type: 'text',
         parseFun: parseOnlyNumbers,
         required: true,
-        value: '89999999999',
         validators: [
           {
             id: 'phone-required',
@@ -122,7 +117,6 @@ const patientModel = [
         type: 'text',
         parseFun: parseOnlyNumbers,
         required: true,
-        value: '12345678901',
         validators: [
           {
             id: 'snils-required',
@@ -142,7 +136,6 @@ const patientModel = [
         type: 'text',
         parseFun: parseOnlyNumbers,
         required: true,
-        value: '1234123412341234',
         validators: [
           {
             id: 'oms-required',
@@ -170,7 +163,6 @@ const patientModel = [
         type: 'text',
         parseFun: parseOnlyNumbers,
         required: true,
-        value: '1234',
         validators: [
           {
             id: 'number-required',
@@ -190,7 +182,6 @@ const patientModel = [
         type: 'text',
         parseFun: parseOnlyNumbers,
         required: true,
-        value: '123456',
         validators: [
           {
             id: 'series-required',
@@ -209,14 +200,12 @@ const patientModel = [
         label: 'Issued on',
         type: 'date',
         required: true,
-        value: new Date(),
       },
       {
         name: 'issuing_company',
         label: 'Issuing company',
         type: 'text',
         required: true,
-        value: 'RuskiPog',
         validators: [
           {
             id: 'issuingCompany-required',
@@ -231,7 +220,6 @@ const patientModel = [
         type: 'text',
         parseFun: parseOnlyNumbers,
         required: true,
-        value: '500106',
         validators: [
           {
             id: 'issuing_company_code-required',
@@ -254,7 +242,6 @@ const patientModel = [
         type: 'text',
         parseFun: parseOnlyNumbers,
         required: true,
-        value: '123456',
         validators: [
           {
             id: 'postal_number-required',
@@ -269,7 +256,6 @@ const patientModel = [
         type: 'text',
         parseFun: parseOnlyLetterAndSpace,
         required: true,
-        value: 'moscow',
         validators: [
           {
             id: 'city-required',
@@ -283,7 +269,6 @@ const patientModel = [
         label: 'Street',
         type: 'text',
         required: true,
-        value: 'moscow',
         validators: [
           {
             id: 'street-required',
@@ -297,7 +282,6 @@ const patientModel = [
         label: 'Building number',
         type: 'text',
         required: true,
-        value: 'moscow',
         validators: [
           {
             id: 'building-required',

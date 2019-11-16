@@ -92,7 +92,7 @@ const FormPanel = ({ className, btnText, submitCallback, model, loading, error, 
         <Loader />
       ) : (
         <div
-          className={`form__button ${requiredAndNotFilled ? 'disabledss' : ''}`}
+          className={`form__button ${requiredAndNotFilled ? 'disabled' : ''}`}
           onClick={() => {
             toggleParse(true);
             setSubmit();

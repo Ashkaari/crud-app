@@ -35,7 +35,7 @@ const patientSchema = mongoose.Schema({
     lowercase: true,
     validate: value => {
       if (!validator.isEmail(value)) {
-        throw new Error({ error: 'Invalid Email address' });
+        throw new Error('Invalid Email address');
       }
     },
   },
@@ -44,7 +44,16 @@ const patientSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
-  snils: { type: Number, required: true, unique: true },
+  snils: {
+    type: Number,
+    required: true,
+    unique: true,
+    validate: value => {
+      if (value.length !== 11) {
+        throw new Error('Invalid snils number');
+      }
+    },
+  },
   oms: { type: Number, required: true, unique: true },
   passport: {
     number: { type: Number, required: true },
