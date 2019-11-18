@@ -18,10 +18,10 @@ export const addNewPatient = patient => dispatch => {
     })
     .then(() => {
       dispatch(setNewPatientSuccess(patient));
-      toast.success('heyyy');
+      toast.success(`Successfully added patient ${patient.name} ${patient.lastname}`);
     })
     .catch(e => {
       dispatch(setNewPatientError(e.response.data));
-      e.response.data.type === 'GlobalError' && toast.error(e.response.data.errors);
+      toast.error(e.response.data.notification);
     });
 };

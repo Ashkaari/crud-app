@@ -48,11 +48,6 @@ const patientSchema = mongoose.Schema({
     type: Number,
     required: true,
     unique: true,
-    validate: value => {
-      if (value.length !== 11) {
-        throw new Error('Invalid snils number');
-      }
-    },
   },
   oms: { type: Number, required: true, unique: true },
   passport: {

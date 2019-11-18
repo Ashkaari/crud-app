@@ -4,15 +4,16 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-router.post('/patients/add', auth, async (req, res) => {
+router.post('/patients/add', async (req, res) => {
   try {
     const patient = new Patient(req.body);
     await patient.save();
 
-    res.status(201).send();
+    res.status(201).send(patient);
   } catch (error) {
     if (error.name === 'ValidationError') {
       let resBody = {
+        type: error.name,
         notification: error._message,
         errors: {},
       };
@@ -33,18 +34,19 @@ router.post('/patients/add', auth, async (req, res) => {
             break;
         }
       });
-      console.log('res', resBody);
-    }
-
-    /*if (e.name === 'ValidationError') {
-      let errors = {};
-      console.log(e);
-      Object.values(e.errors).forEach(error => (errors[error.path] = error.message));
-      res.status(422).send({ type: e.name, errors });
+      res.status(422).send(resBody);
+    } else if (error.name === 'MongoError') {
+      if (error.code === 11000) {
+        // todo: check what field is duplicated
+        // todo: check all required fields for duplicate
+        console.log(error);
+        res
+          .status(400)
+          .send({ type: 'DuplicateError', notification: 'Some fields already exist in database', errors: {} });
+      }
     } else {
-      res.status(400).send({ type: 'GlobalError', errors: 'Unknown error occured' });
-    }*/
-    res.status(400).send(error);
+      res.status(400).send({ type: 'GlobalError', notification: 'Unknown error occured', errors: {} });
+    }
   }
 });
 
