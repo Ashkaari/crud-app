@@ -66,7 +66,7 @@
         width: 16px;
         height: 16px;
         background-color: transparent;
-        border: 2px solid rgba($onBackground, 0.5);
+        border: 2px solid rgba($onSurface, 0.5);
         border-radius: 14px;
         z-index: $z-layer-1;
         transition: border-color 0.28s cubic-bezier(.4, 0, .2, 1);
@@ -110,7 +110,7 @@
   }
 
   label {
-    @include font("Roboto", 16px);
+    @include font("Roboto", 16px, rgba($onSurface, 0.4));
     position: absolute;
     left: 5px;
     top: 10px;
@@ -126,7 +126,7 @@
     border: none;
     outline: none;
 
-    border-bottom: 1px solid $onSurface;
+    border-bottom: 1px solid rgba($onSurface, 0.4);
 
     &:focus ~ label,
     &:valid ~ label {
@@ -142,5 +142,12 @@
   .react-calendar {
     position: absolute;
     z-index: $z-layer-1;
+  }
+
+  &.error {
+   .bar:before {
+      width: 100%;
+      background: $error;
+    }
   }
 }

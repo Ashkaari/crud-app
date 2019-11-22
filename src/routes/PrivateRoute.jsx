@@ -16,7 +16,7 @@ const PrivateRoute = ({ component: Component, layout: Layout, ...rest }) => {
           <Redirect
             to={{
               pathname: '/login',
-              state: { from: props.location, message: 'you need to be authorized to view this page' },
+              state: { from: props.location, message: 'You need to be authorized to view this page' },
             }}
           />
         )

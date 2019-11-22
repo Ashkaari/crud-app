@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-router.post('/patients/add', async (req, res) => {
+router.post('/patients/add', auth, async (req, res) => {
   try {
     const patient = new Patient(req.body);
     await patient.save();

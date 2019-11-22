@@ -2,15 +2,15 @@
 @import "styles/_base/variables";
 
 .page__login {
-  @include size(65vw, 65vh);
+  @include size(20vw, 70vh);
   @include flex(row, flex-start, center);
   position: relative;
   overflow: hidden;
-  background-color: $bg-color-white;
+  background-color: $background;
   border-radius: 5px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
-  svg {
+  /*svg {
     @include size(auto, 100%);
     border-radius: 4px;
 
@@ -26,16 +26,59 @@
     #g732 {
       animation: animateLeavesTop 6s linear infinite;
     }
-  }
+  }*/
 
   &-wrapper {
     @include flex(column, flex-start, center);
-    @include size(340px);
+    @include size(340px, 60vh);
     z-index: $z-layer-1;
     margin: 0 auto;
 
+    svg {
+      transition: all .3s linear;
+    }
+
+    .registration {
+      @include font("Roboto", 16px, $onBackground);
+      display: block;
+      margin-bottom: 10px;
+
+      a {
+        color: $secondary500;
+        transition: color .3s linear;
+
+        &:hover {
+          color: $secondary700
+        }
+
+        &:active {
+          color: darken($secondary700, 10%);
+        }
+      }
+    }
+
+    .not_authorized {
+      background: darken($background, 1%);
+      padding: 10px 20px;
+    }
+
+    .forgot-password {
+      @include font("Roboto", 14px, $onBackground);
+      display: block;
+      text-align: right;
+      transition: color .3s linear;
+
+      &:hover {
+        color: $secondary700
+      }
+
+      &:active {
+        color: darken($secondary700, 10%);
+      }
+    }
+
     &__welcome {
-      @include font("Montserrat Regular", 25px);
+      @include font("Montserrat Regular", 25px, $onBackground);
       display: block;
       margin-bottom: 20px;
 
@@ -44,49 +87,39 @@
         font-weight: bold;
       }
     }
-
-    &__info {
-      @include font("Montserrat Regular", 25px);
-
-      strong {
-        @include font("Montserrat Bold", 25px, $text-light-green);
-        line-height: 1.3;
-        font-weight: bold;
-      }
-    }
   }
 
   ._header {
-    margin-bottom: 45px;
-  }
-
-  ._subheader {
-    margin-bottom: 10px;
-  }
-
-  ._info {
-    cursor: pointer;
-    text-align: right;
+    margin-bottom: 30px;
+    color: rgba($onSurface, 0.8)
   }
 
   .form {
     width: 285px;
 
     &__button {
-      @include font("Barlow Regular", 20px);
+      @include font("Roboto", 16px, $onPrimary700);
       text-transform: uppercase;
+      font-weight: 400;
       cursor: pointer;
       border: none;
       user-select: none;
       outline: none;
       padding: 10px 20px;
       margin: 25px 0 15px;
+      border-radius: 20px;
 
-      background: $color-light-green;
+      background: $secondary500;
       transition: all 0.3s linear;
 
       &:hover {
-        background: darken($color-light-green, 10%);
+        background: $secondary700;
+        color: $onPrimary700
+      }
+
+      &:active {
+        background: darken($secondary700, 10%);
+        color: $onPrimary700
       }
 
       &.disabled {
