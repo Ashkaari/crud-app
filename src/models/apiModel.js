@@ -8,4 +8,5 @@ export const post = {
 
 export const get = {
   user: '/users/me',
+  patients_list: '/patients/list',
 };

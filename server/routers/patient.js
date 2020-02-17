@@ -1,6 +1,6 @@
 const express = require('express');
 const Patient = require('../models/Patient');
-const auth = require('../middleware/auth');
+//const auth = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -48,6 +48,12 @@ router.post('/patients/add', async (req, res) => {
       res.status(400).send({ type: 'GlobalError', notification: 'Unknown error occured', errors: {} });
     }
   }
+});
+
+router.get('/patients/list', async (req, res) => {
+  Patient.find({}, (err, patients) => {
+    res.status(200).send(JSON.stringify(patients));
+  });
 });
 
 module.exports = router;

@@ -1,15 +1,15 @@
-import { POST_NEW_PATIENT_REQUEST, POST_NEW_PATIENT_SUCCESS, POST_NEW_PATIENT_FAILURE } from '../actions';
+import { patients as patientsTypes } from '../actions';
 
 const defaultState = {
   loading: false,
   GlobalError: null,
   ValidationError: null,
-  patients: [],
+  list: [],
 };
 
 export default function patients(state = defaultState, action) {
   switch (action.type) {
-    case POST_NEW_PATIENT_REQUEST: {
+    case patientsTypes.POST_NEW_PATIENT_REQUEST: {
       return {
         ...state,
         loading: true,
@@ -18,7 +18,7 @@ export default function patients(state = defaultState, action) {
       };
     }
 
-    case POST_NEW_PATIENT_SUCCESS: {
+    case patientsTypes.POST_NEW_PATIENT_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -26,11 +26,20 @@ export default function patients(state = defaultState, action) {
       };
     }
 
-    case POST_NEW_PATIENT_FAILURE: {
+    case patientsTypes.POST_NEW_PATIENT_FAILURE: {
       return {
         ...state,
         loading: false,
         [action.payload.type]: action.payload.errors,
+      };
+    }
+
+    case patientsTypes.GET_PATIENTS_LIST_SUCCESS: {
+      console.log('success', action);
+      return {
+        ...state,
+        loading: false,
+        list: action.payload,
       };
     }
 

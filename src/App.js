@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound';
 import Dashboard from './pages/Dashboard';
 import NewPatient from './pages/NewPatient';
 import Comments from './pages/Comments';
+import Patients from './pages/Patients';
 
 // ROUTES
 import MainRoute from './routes/MainRoute';
@@ -29,6 +30,7 @@ function App() {
           <PrivateRoute exact path="/dashboard" component={Dashboard} layout={DashboardLayout} />
           <PrivateRoute exact path="/patients/new" component={NewPatient} layout={DashboardLayout} />
           <PrivateRoute path="/comments" component={Comments} layout={DashboardLayout} />
+          <PrivateRoute path="/patients" component={Patients} layout={DashboardLayout} />
           <Route path="*" component={NotFound} />
         </Switch>
       </BrowserRouter>

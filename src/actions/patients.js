@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import { post } from '../models/apiModel';
-import { POST_NEW_PATIENT_FAILURE, POST_NEW_PATIENT_REQUEST, POST_NEW_PATIENT_SUCCESS } from './index';
+import { get, post } from '../models/apiModel';
+import { patients as patientsTypes } from './index';
 
-export const setNewPatientSuccess = payload => ({ type: POST_NEW_PATIENT_SUCCESS, payload });
-export const setNewPatientError = error => ({ type: POST_NEW_PATIENT_FAILURE, payload: error });
+const setNewPatientSuccess = payload => ({ type: patientsTypes.POST_NEW_PATIENT_SUCCESS, payload });
+const setNewPatientError = error => ({ type: patientsTypes.POST_NEW_PATIENT_FAILURE, payload: error });
 
 export const addNewPatient = patient => dispatch => {
-  dispatch({ type: POST_NEW_PATIENT_REQUEST });
+  dispatch({ type: patientsTypes.POST_NEW_PATIENT_REQUEST });
 
   axios
     .post(post.patients_new, patient, {
@@ -24,4 +24,20 @@ export const addNewPatient = patient => dispatch => {
       dispatch(setNewPatientError(e.response.data));
       toast.error(e.response.data.notification);
     });
+};
+
+const setPatientsListSuccess = payload => ({ type: patientsTypes.GET_PATIENTS_LIST_SUCCESS, payload });
+const setPatientsListFailure = error => ({ type: patientsTypes.GET_PATIENTS_LIST_FAILURE, payload: error });
+
+export const getPatientsList = () => dispatch => {
+  dispatch({ type: patientsTypes.GET_PATIENTS_LIST_REQUEST });
+
+  axios
+    .get(get.patients_list, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(res => dispatch(setPatientsListSuccess(res.data)))
+    .catch(e => console.log(e));
 };
