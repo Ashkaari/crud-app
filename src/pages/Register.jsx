@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { register } from '../actions/user';
+
+import Logo from '../components/Logo';
 import FormPanel from '../components/FormPanel';
+
 import registerModel from '../models/registerModel';
+import { register } from '../actions/user';
 
 import 'styles/_pages/login.scss';
 
@@ -16,7 +19,7 @@ const RegisterPage = ({ register, isLoading, user, error }) => {
 
   return (
     <div className="page__login-wrapper">
-      <span className="page__login-wrapper _header">Leonurus Ltd.</span>
+      <Logo textColor={'#2196f3'} borderColor={'#2196f3'} text={'LEONURUS'} />
       {user.name ? (
         <>
           <span className="page__login-wrapper__welcome">
@@ -30,8 +33,6 @@ const RegisterPage = ({ register, isLoading, user, error }) => {
         </>
       ) : (
         <>
-          <NavLink to="/login"> Login </NavLink>
-          <span className="page__login-wrapper _subheader">Welcome to Leo.CRUD</span>
           <FormPanel
             btnText={'Register'}
             submitCallback={handleSubmit}
@@ -39,6 +40,9 @@ const RegisterPage = ({ register, isLoading, user, error }) => {
             loading={isLoading}
             error={error}
           />
+          <div className="registration">
+            Already have an account? <NavLink to="/login"> Sign in now </NavLink>
+          </div>
         </>
       )}
     </div>

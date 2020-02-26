@@ -11,7 +11,7 @@ import useForm from '../hooks/useForm';
 
 import 'styles/_components/inputs.scss';
 
-const FormPanel = ({ className, btnText, submitCallback, model, loading, error, validationErrors }) => {
+const FormPanel = ({ className, btnText, submitCallback, model, loading, error, validationErrors, children }) => {
   const [fields, setInputs, setSubmit, setErrors] = useForm(model, submitCallback);
   const [needParsing, toggleParse] = useState(false);
 
@@ -88,6 +88,7 @@ const FormPanel = ({ className, btnText, submitCallback, model, loading, error, 
     <div className={className || 'form'}>
       {fields.map(field => renderInput(field))}
       {error && <div className="text-danger">{error}</div>}
+      {children}
       {loading ? (
         <Loader />
       ) : (
