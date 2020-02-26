@@ -44,7 +44,7 @@
 
       &:checked ~ label {
         &:before {
-          border-color: $primary500;
+          border-color: $secondary500;
         }
 
         &:after {
@@ -92,55 +92,51 @@
     cursor: pointer;
   }
 
-  .bar {
-    position: relative;
-    display: block;
-    width: 100%;
-
-    &:before {
-      content: '';
-      height: 2px;
-      width: 0;
-      bottom: 0;
-      position: absolute;
-      background: $primary500;
-      transition: 0.3s ease all;
-      left: 0;
-    }
-  }
-
   label {
     @include font("Roboto", 16px);
     position: absolute;
-    left: 5px;
-    top: 10px;
+    left: 0;
+    top: -20px;
     transition: 0.3s ease all;
   }
 
   input {
     @include font("Roboto", 18px);
-    @include size(100%);
+    @include size(100%, 50px);
     box-sizing: border-box;
-    background: none;
+    background: $background;
     padding: 10px 10px 10px 5px;
-    border: none;
     outline: none;
 
-    border-bottom: 1px solid $onSurface;
+    border: 1px solid $primary700;
+    border-radius: 4px;
 
-    &:focus ~ label,
-    &:valid ~ label {
-      @include font("Roboto", 12px, $primary500);
-      top: -14px;
+
+    &:focus {
+      border-color: $primary500;
     }
 
-    &:focus ~ .bar:before {
-      width: 100%;
+    &:focus ~ label {
+      @include font("Roboto", 16px, $primary500);
     }
   }
 
   .react-calendar {
     position: absolute;
     z-index: $z-layer-1;
+  }
+
+  &._error {
+    input {
+      border-color: $error;
+
+      &:focus ~ label {
+        color: $error;
+      }
+    }
+
+    label {
+      color: $error;
+    }
   }
 }

@@ -35,7 +35,6 @@ export default function patients(state = defaultState, action) {
     }
 
     case patientsTypes.GET_PATIENTS_LIST_SUCCESS: {
-      console.log('success', action);
       return {
         ...state,
         loading: false,
